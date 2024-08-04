@@ -14,7 +14,7 @@ export default function Home() {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    // Fetch data from backend
+   
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:3001/get');
@@ -27,6 +27,16 @@ export default function Home() {
     fetchData();
   }, []);
 
+  
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3001/delete/${id}`);
+      setCards(cards.filter(card => card._id !== id)); 
+    } catch (error) {
+      console.error("Error deleting data", error);
+    }
+  };
+
   return (
     <Container sx={{ marginTop: 15 }}>
       <Grid container spacing={4} justifyContent="center">
@@ -36,9 +46,9 @@ export default function Home() {
               <CardMedia
                 component="img"
                 alt={card.title}
-                height="200"  // Increased height
-                image={card.img_url || "/static/images/cards/default.jpg"}  // Fallback image if `img_url` is not provided
-                sx={{ width: '100%' }}  // Ensures the image fits the width of the Card
+                height="200"  
+                image={card.img_url || "/static/images/cards/default.jpg"}  
+                sx={{ width: '100%' }}  
               />
               <CardContent>
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
@@ -51,7 +61,11 @@ export default function Home() {
                 </Box>
               </CardContent>
               <CardActions sx={{ justifyContent: 'flex-start', padding: '8px 16px' }}>
-                <Button size="small" sx={{ backgroundColor: 'purple', color: 'white', '&:hover': { backgroundColor: 'darkPurple' }, marginRight: 1 }}>
+                <Button 
+                  size="small" 
+                  sx={{ backgroundColor: 'purple', color: 'white', '&:hover': { backgroundColor: 'darkPurple' }, marginRight: 1 }}
+                  onClick={() => handleDelete(card._id)}  
+                >
                   Delete
                 </Button>
                 <Button size="small" sx={{ backgroundColor: 'purple', color: 'white', '&:hover': { backgroundColor: 'darkPurple' } }}>
