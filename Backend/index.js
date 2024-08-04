@@ -1,4 +1,4 @@
-// index.js
+
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -45,6 +45,7 @@ app.delete("/delete/:id", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
 
 
 app.listen(PORT, () => {
