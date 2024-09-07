@@ -1,12 +1,11 @@
 
 const mongoose = require("mongoose");
 
-const blogSchema = new mongoose.Schema({
-  title: String,
-  content: String,
-  img_url: String,
+const userSchema = new mongoose.Schema({
+  Email: String,
+  Phoneno: Number,
+  Username: String,
+  Password: String
 });
 
-const BlogModel = mongoose.model("Blog", blogSchema);
-
-module.exports = BlogModel;
+module.exports = mongoose.model('userDetail',userSchema);

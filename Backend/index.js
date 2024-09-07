@@ -2,7 +2,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const BlogModel = require("./model");
+const userschema=require('./model');
 require("./connection"); 
 
 const app = express();
@@ -12,15 +12,53 @@ app.use(express.json());
 app.use(cors());
 
 // This for POST
-app.post("/add", async (req, res) => {
-  try {
-    const { title, content, img_url } = req.body;
-    const newBlog = new BlogModel({ title, content, img_url });
-    await newBlog.save();
-    res.status(201).send({ message: "Blog added successfully" });
-  } catch (error) {
+app.get('/users',async(req,res)=>{
+  try{
+    const data=await userschema.find();//data contain all the records of the all the users
+    res.send(data);
+  }
+  catch{
+    res.send('error found');
+    console.error();
+  }
+});
+//login
+app.post('/loginuser',async(req,res)=>{
+  try{
+    const{identifier,password}=req.body;//identifier is either email or username
+   
+    const user = await userschema.findOne({$or:[{user_id:identifier},{user_email:identifier}]})//$or is similiar to ||,but we cant use || directly in json
+    if (!identifier || !password) {
+      return res.status(400).send(' Username/email and password are required');
+    }
+    if(!user || user.user_password!==password)
+    {
+      return res.status(401).send('Invalid username/email or Incorrect password')
+    }
+    res.send(user);
+  }
+  catch(error){
     console.log(error);
-    res.status(500).send("Server Error");
+    res.status(500).send('error occured in db');
+  }
+})
+//get details by username or email
+app.get('/user/:identifier',async(req,res)=>{
+  try{
+    const {identifier}= req.params;
+    const data=await userschema.findOne({user_id:identifier});//data contain all the records of one users
+    console.log(data);
+    if(!data){
+      data = await userschema.findOne({user_email:identifier});
+    }
+    if (!data) {
+      return res.status(404).send('User not found');
+    }
+    res.send(data);
+  }
+  catch{
+    res.send('error found');
+    console.error();
   }
 });
 // to fetch

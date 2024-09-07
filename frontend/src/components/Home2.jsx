@@ -32,6 +32,10 @@ const Home2 = () => {
     navigate('/mentor'); // Navigate to the /mentor route
   };
 
+  const handleQuizClick = () => {
+    navigate('/quiz'); // Navigate to the Personality Quiz page
+  };
+
   return (
     <Box
       sx={{
@@ -58,7 +62,7 @@ const Home2 = () => {
             Discover your Perfect Career Match!
           </Typography>
           <CardActions sx={{ justifyContent: 'center' }}>
-            <Button size="small" variant="contained">GO</Button>
+            <Button size="small" variant="contained" onClick={handleQuizClick}>GO</Button> {/* Navigate to /personality-quiz */}
           </CardActions>
         </OverlayContent>
       </StyledCard>

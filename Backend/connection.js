@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 
 mongoose
-  .connect("mongodb+srv://projdb:abcd%401234@cluster0.yoqqqcw.mongodb.net/final?retryWrites=true&w=majority&appName=Cluster0")  
+  .connect("mongodb+srv://varshasudeesh004:dftpafjmoLs3v0Rw@cluster0.abshkil.mongodb.net/userdb?retryWrites=true&w=majority&appName=Cluster0")  
   .then(() => {
     console.log("Connected to DB");
   })
