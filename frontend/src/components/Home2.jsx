@@ -31,6 +31,9 @@ const Home2 = () => {
   const handleMentoringClick = () => {
     navigate('/mentor'); // Navigate to the /mentor route
   };
+  const handleGameClick = () => {
+    navigate('/add'); // Navigate to the /mentor route
+  };
 
   const handleQuizClick = () => {
     navigate('/quiz'); // Navigate to the Personality Quiz page
@@ -83,7 +86,7 @@ const Home2 = () => {
             DreamJob Discovery!
           </Typography>
           <CardActions sx={{ justifyContent: 'center' }}>
-            <Button size="small" variant="contained">GO</Button>
+            <Button size="small" variant="contained" onClick={handleGameClick}>GO</Button> {/* Navigate to /personality-quiz */}
           </CardActions>
         </OverlayContent>
       </StyledCard>
