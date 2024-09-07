@@ -10,7 +10,7 @@ const Navbar = () => {
         <AppBar position="static" color="secondary">
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              BlogApp
+              Visionaries
             </Typography>
             <Button>
               <Link style={{ textDecoration: "none", color: "white" }} to={"/"}>
@@ -25,6 +25,14 @@ const Navbar = () => {
                 Add
               </Link>
             </Button>
+            <Button>
+              <Link
+                style={{ textDecoration: "none", color: "white" }}
+                to={"/home2"}
+              >
+                home 2
+              </Link>
+            </Button> 
           </Toolbar>
         </AppBar>
       </Box>
