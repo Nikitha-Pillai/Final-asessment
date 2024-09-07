@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardMedia, CardContent, Typography, CardActions, Button, Box } from '@mui/material';
 import { styled } from '@mui/system';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const StyledCard = styled(Card)({
   position: 'relative',
@@ -15,8 +16,8 @@ const OverlayContent = styled(CardContent)({
   left: 0,
   right: 0,
   padding: 20,
-  color: 'white', // Adjust text color for better visibility on image
-  background: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background for readability
+  color: 'white', 
+  background: 'rgba(0, 0, 0, 0.5)', 
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -25,14 +26,20 @@ const OverlayContent = styled(CardContent)({
 });
 
 const Home2 = () => {
+  const navigate = useNavigate(); // Initialize useNavigate hook
+
+  const handleMentoringClick = () => {
+    navigate('/mentor'); // Navigate to the /mentor route
+  };
+
   return (
     <Box
       sx={{
         display: 'flex',
-        flexDirection: 'column', // Align cards vertically
-        alignItems: 'center', // Center cards horizontally
+        flexDirection: 'column',
+        alignItems: 'center',
         padding: 2,
-        gap: 4, // Space between cards
+        gap: 4,
       }}
     >
       {/* First Card */}
@@ -60,9 +67,9 @@ const Home2 = () => {
       <StyledCard>
         <CardMedia
           component="img"
-          sx={{ height: 350, width: '100%' ,marginTop: '5px'}}
-         image="https://www.whizqiz.com/wp-content/uploads/2021/05/career-page-images-05.png"
-         title="Game"
+          sx={{ height: 350, width: '100%', marginTop: '5px' }}
+          image="https://www.whizqiz.com/wp-content/uploads/2021/05/career-page-images-05.png"
+          title="Game"
         />
         <OverlayContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -81,7 +88,7 @@ const Home2 = () => {
       <StyledCard>
         <CardMedia
           component="img"
-          sx={{ height: 350, width: '100%' ,marginTop: '5px'}}
+          sx={{ height: 350, width: '100%', marginTop: '5px' }}
           image="https://static.vecteezy.com/system/resources/previews/001/643/929/non_2x/career-guidance-line-up-vector.jpg"
           title="Mentoring Sessions"
         />
@@ -93,7 +100,7 @@ const Home2 = () => {
             Personalized mentoring to discover your ideal career path!
           </Typography>
           <CardActions sx={{ justifyContent: 'center' }}>
-            <Button size="small" variant="contained">GO</Button>
+            <Button size="small" variant="contained" onClick={handleMentoringClick}>GO</Button> {/* Navigate to /mentor */}
           </CardActions>
         </OverlayContent>
       </StyledCard>

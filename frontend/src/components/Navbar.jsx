@@ -18,21 +18,11 @@ const Navbar = () => {
               </Link>
             </Button>
             <Button>
-              <Link
-                style={{ textDecoration: "none", color: "white" }}
-                to={"/add"}
-              >
-                Add
+              <Link style={{ textDecoration: "none", color: "white" }} to={"/web"}>
+                Webinar
               </Link>
             </Button>
-            <Button>
-              <Link
-                style={{ textDecoration: "none", color: "white" }}
-                to={"/home2"}
-              >
-                home 2
-              </Link>
-            </Button> 
+            
           </Toolbar>
         </AppBar>
       </Box>
