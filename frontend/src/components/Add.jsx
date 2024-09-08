@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom'; 
 import './Add.css'; // Ensure CSS for styling
 
 const ItemType = 'BUTTON';
@@ -29,7 +29,7 @@ const DraggableButton = ({ onClick, type, children, color }) => {
 };
 
 const Add = () => {
-  const navigate = useNavigate(); // Use navigate
+  const navigate = useNavigate(); 
   const [position, setPosition] = useState(0); // Stickman position
   const [isLooping, setIsLooping] = useState(false); // Whether loop is active
   const [isConnected, setIsConnected] = useState(false); // Whether buttons are connected
@@ -159,7 +159,7 @@ const Add = () => {
           positionRef.current = newPosition; // Update the position ref
   
           // Check if stickman has reached the goal post
-          if (newPosition === goalPostPosition) {
+          if (newPosition === goalPostPosition){
             alert("Stickman has reached the goal post!");
             resetPosition(); // Reset position after reaching the block
             clearInterval(interval); // Stop the loop
@@ -206,30 +206,36 @@ const Add = () => {
       </div>
 
       <div ref={drop} className={`controls ${isOver ? 'drop-target' : ''}`}>
-        <DraggableButton
-          onClick={moveForward}
-          type="MOVE_FORWARD"
+        <DraggableButton 
+          onClick={moveForward} 
+          type="MOVE_FORWARD" 
           color={buttonColors.moveForward}
         >
           Move Forward
         </DraggableButton>
-        <DraggableButton
-          onClick={handleLoop}
-          type="LOOP"
-          color={buttonColors.loop}
+        <button 
+          onClick={handleLoop} 
+          disabled={!isConnected}
+          style={{ backgroundColor: buttonColors.loop }}
         >
-          Loop
-        </DraggableButton>
+          Loop Movement
+        </button>
       </div>
 
-      {showNextPuzzle && (
-        <button 
-          className="next-puzzle-button"
-          onClick={() => navigate('/cal')}
-        >
+      {/* Time and Tip display */}
+      <div className="time-tip">
+        {timeTaken && (
+          <p className="multiline">Time taken to reach the goal: {timeTaken} seconds</p>
+        )}
+        {tipDisplayed && (
+          <p>Tip: Using the loop automates tasks and saves time!</p>
+        )}
+        {showNextPuzzle && (
+          <button onClick={() => navigate('/cal')}>
           Next Puzzle
         </button>
-      )}
+        )}
+      </div>
     </div>
   );
 };
